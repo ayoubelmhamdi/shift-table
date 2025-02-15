@@ -42,19 +42,19 @@ def trt_iso(x, y, z):
     print("  Displacements to Apply:")
     if random.randint(1, 3) == 1:
         print(f"\t{dx:.1f} {X[vx]}")
-        print("\n  Treatment ISO Position:", end='')
+        print("\n  Treatment ISO Position: ", end='')
         # time.sleep(n)
         input()
         print(f"\n\tx: {new_x:.1f}")
     elif random.randint(1, 3) == 2:
         print(f"\t{dy:.1f} {Y[vy]}")
-        print("\n  Treatment ISO Position:", end='')
+        print("\n  Treatment ISO Position: ", end='')
         # time.sleep(n)
         input()
         print(f"\n\ty: {new_y:.1f}")
     else:
         print(f"\t{dz:.1f} {Z[vz]}")
-        print("\n  Treatment ISO Position:", end='')
+        print("\n  Treatment ISO Position: ", end='')
         # time.sleep(n)
         input()
         print(f"\n\tz: {new_z:.1f}")
@@ -73,11 +73,15 @@ def main():
         # print(f"\ttime: {tm-i}s\n")
 
         # Display initial positions and displacements
+        t0=time.time()
+        print("\n\tExercise: %i\n" % (i+1))
         print("  Initial CT ISO Position:")
         print(f"\tx: {x:.1f}\n\ty: {y:.1f}\n\tz: {z:.1f}\n")
 
         trt_iso(x, y, z)
-        input("\n  Press Enter to continue...")
+        print(f"\n  finished in {time.time()-t0:.1f} seconds")
+        # input("\n  Press Enter to continue...")
+        input()
 
 if __name__ == '__main__':
     main()
