@@ -5,7 +5,13 @@ import time
 import os
 import random
 
-random.seed(13+1)
+# random.seed(13)
+
+# Define colors
+RED = '\033[0;31m'
+GREEN = '\033[0;32m'
+YELLOW = '\033[0;33m'
+NC = '\033[0m' # No Color
 
 X = ["Left", "Right"]
 Y = ["Superior", "Inferior"]
@@ -41,45 +47,47 @@ def trt_iso(x, y, z):
     # Display the resulting treatment ISO positions
     print("  Displacements to Apply:")
     if random.randint(1, 3) == 1:
-        print(f"\t{dx:.1f} {X[vx]}")
+        print(f"\t{YELLOW}{dx:.1f} {X[vx]}{NC}")
         print("\n  Treatment ISO Position: ", end='')
-        # time.sleep(n)
         input()
-        print(f"\n\tx: {new_x:.1f}")
+        print(f"\t{RED}x: {new_x:.1f}{NC} ", end='')
     elif random.randint(1, 3) == 2:
-        print(f"\t{dy:.1f} {Y[vy]}")
+        print(f"\t{YELLOW}{dy:.1f} {Y[vy]}{NC}")
         print("\n  Treatment ISO Position: ", end='')
-        # time.sleep(n)
         input()
-        print(f"\n\ty: {new_y:.1f}")
+        print(f"\t{RED}y: {new_y:.1f}{NC} ", end='')
     else:
-        print(f"\t{dz:.1f} {Z[vz]}")
+        print(f"\t{YELLOW}{dz:.1f} {Z[vz]}{NC}")
         print("\n  Treatment ISO Position: ", end='')
-        # time.sleep(n)
         input()
-        print(f"\n\tz: {new_z:.1f}")
+        print(f"\t{RED}z: {new_z:.1f}{NC} ", end='')
 
 
 
 def main():
     i = -1
     x, y, z = ct_iso()
+    t0, t1 = 0, 0
+
     while(True):
+        os.system("clear")
+        time.sleep(0.2)
         i+=1
         if i % 10 == 0:
             # regenerate new ct iso after 10 essaie
             x, y, z = ct_iso()
-        os.system("clear")
+        else:
+            print(f"  last exercise: {RED}{t1-t0:.1f}{NC}s")
         # print(f"\ttime: {tm-i}s\n")
 
         # Display initial positions and displacements
         t0=time.time()
         print("\n\tExercise: %i\n" % (i+1))
         print("  Initial CT ISO Position:")
-        print(f"\tx: {x:.1f}\n\ty: {y:.1f}\n\tz: {z:.1f}\n")
+        print(f"{GREEN}\tx: {x:.1f}\n\ty: {y:.1f}\n\tz: {z:.1f}\n{NC}")
 
         trt_iso(x, y, z)
-        print(f"\n  finished in {time.time()-t0:.1f} seconds")
+        t1=time.time()
         # input("\n  Press Enter to continue...")
         input()
 
